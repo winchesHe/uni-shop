@@ -1,4 +1,7 @@
 <template>
+  <view>
+    <!-- 搜索栏 -->
+    <my-search ></my-search>
   <view class="scoll-view">
     <scroll-view scroll-y="true" :style="{height:wh + 'px'}" >
       <view class="cata-left-list" :class="{active:currentIndex == i1}" v-for="(item1,i1) in cateList" :key="i" @click="cateLeftClick(i1)">
@@ -24,6 +27,7 @@
       </view>
     </scroll-view>
   </view>
+  </view>
 </template>
 
 <script>
@@ -43,7 +47,8 @@
       // 获取当前手机信息
       const sysInfo = uni.getSystemInfoSync()
       // 为wh 设置可使用窗口高度
-      this.wh = sysInfo.windowHeight
+      // -50 因为顶部加了搜索框
+      this.wh = sysInfo.windowHeight - 50
       this.getCateList()
     },
     methods:{
@@ -54,7 +59,7 @@
         this.cateList = res.message
         // 获取二级分类
         this.cataLevel = res.message[0].children
-        console.log(this.cataLevel)
+        // console.log(this.cataLevel)
       },
       // 左侧分类点击事件
       cateLeftClick(index){
@@ -69,6 +74,7 @@
           url:'/subpkg/goods_list/goods_list?cid=' + item.cat_id
         })
       }
+      
     }
   }
 </script>

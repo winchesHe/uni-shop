@@ -1,6 +1,10 @@
 <template>
-  <!-- 顶部轮播图 -->
   <view>
+    <!-- 搜索栏 -->
+    <view class="home-search">
+      <my-search></my-search>
+    </view>
+  <!-- 顶部轮播图 -->
     <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">
       <swiper-item v-for="(item,index) in swiperList" :key="index">
         <navigator :url="'/subpkg/shop_detail/shop_detail?goods_id=' + item.goods_id"  class="swiper-item">
@@ -92,6 +96,13 @@
 </script>
 
 <style lang="scss">
+  .home-search{
+    // position: fixed;
+    position: sticky;
+    z-index: 999;
+    width: 100%;
+    top: 0;
+  }
 swiper{
   height: 330rpx;
 }
