@@ -40,13 +40,14 @@
       this.historyList = JSON.parse(uni.getStorageSync("kw") || '[]')
     },
     methods:{
+      // 搜索框事件
        input(e){
+         // 节流函数
         clearTimeout(this.timer)
         this.timer = setTimeout(()=>{
           this.keyword = e.valueOf()
           this.getSearchList()
         },500)
-        console.log(this.serachResults)
       },
       async getSearchList(){
         // 发起服务器请求
